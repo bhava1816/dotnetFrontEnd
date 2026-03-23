@@ -1,10 +1,11 @@
-import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Outlet, Navigate } from 'react-router-dom'
 
 function ProtecttiveRoute() {
-    let navigate=useNavigate();
-  let token=sessionStorage.getItem("Accesstoken")
-  return token ? <Outlet/>:navigate('/');
-}
+  // let token = useSelector((store) => store.Login.user?.accessToken)
+  let token=sessionStorage.getItem('AccessToken');
+  console.log(token)
 
-export default ProtecttiveRoute
+  return token ? <Outlet /> : <Navigate to="/" replace />
+}
+export default ProtecttiveRoute 

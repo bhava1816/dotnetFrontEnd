@@ -1,16 +1,24 @@
 import React, { useState ,useEffect} from 'react'
 import api from '../Axios/Axios'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function Dashbroad() {
-  let location=useLocation();
-  let email=location.state.Email;
-  let imageurl=location.state.Imageurl
-  console.log("Image URL from backend:", imageurl);
-  console.log({email,imageurl})
+  // let location=useLocation();
+  // let email=location.state.email;
+  // let imageurl=location.state.Imageurl
+  let selctor=useSelector((state)=>{
+    return state.Login.user
+  })
+  useEffect(() => {
+  console.log("Selector:", selctor);
+}, [selctor]);
+  console.log(selctor)
+  // console.log("Image URL from backend:", imageurl);
+  // console.log({email,imageurl})
     let [Data,setdata]=useState([]);
     let navigate=useNavigate();
 let myfunction=async()=>{
-    let token=sessionStorage.getItem("Accesstoken")
+    // let token=sessionStorage.getItem("Accesstoken")
   //  let jsondata=await fetch("https://localhost:7152/api/Product/GetProducts",{method:"GET",headers:{
   //   "Authorization":`Bearer ${token}` 
   //  }})
@@ -19,7 +27,7 @@ let myfunction=async()=>{
   //  let jsoadata=await jsondata.json();
    setdata(axiosdata.data)
   
-   console.log(axiosdata)
+  //  console.log(axiosdata.data)
 }
 let mydeletefunction=async(id)=>{
     // let token=sessionStorage.getItem("Accesstoken")
@@ -37,8 +45,8 @@ console.log(Data)
   return (
     <div>
     <div>
-      <h1>{email}</h1>
-      <img width="100px" height="100px" src={`https://localhost:7152${imageurl}`} alt="user-Profile" />
+      <h1>{selctor.email}</h1>
+      <img width="100px" height="100px" src={`https://localhost:7152${selctor.imageurl}`} alt="user-Profile" />
     </div>
 
 

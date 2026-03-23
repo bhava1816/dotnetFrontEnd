@@ -15,9 +15,9 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
+      <Route path='/' element={<Login/>}></Route>
       <Route path='/sign-up' element={<Signup/>}></Route>
-      <Route path='/' element={<Login></Login>}></Route>
-      <Route element={<ProtecttiveRoute></ProtecttiveRoute>}><Route path='/DashBroad' element={<Dashbroad></Dashbroad>}></Route></Route>
+      <Route element={<ProtecttiveRoute></ProtecttiveRoute>}><Route path='/dashboard' element={<Dashbroad></Dashbroad>}></Route></Route>
       <Route path='/update' element={<Update></Update>}></Route>
       <Route path='/Add' element={<AddProduct></AddProduct>}></Route>
     </Routes>

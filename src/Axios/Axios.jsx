@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 let api=axios.create({
     baseURL:"https://localhost:7152/",
@@ -6,9 +7,12 @@ let api=axios.create({
 
 })
 api.interceptors.request.use((config)=>{
+    // let accesstoken=useSelector((state)=>{
+    //  return store.Login.user?.accessToken
+    // })
    let token=sessionStorage.getItem("Accesstoken")
-   if(token){
-    config.headers.Authorization=`Bearer ${token}`
+   if(accesstoken){
+    config.headers.Authorization=`Bearer ${accesstoken}`
    }
    return config
 })
